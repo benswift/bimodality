@@ -59,6 +59,9 @@ def analyze_spreadsheet(folder):
 if __name__ == '__main__':
 
     folders = [ 'gaussuniversity', 'twohumpscollege', 'neithertonpolytechnic', 'uoftruncation']
+    # If you want to do your own analysis on your own data, create a folder for your data that has the same format
+    # as what's in the other folders. Then put the name of your folder in the list folders and take out the other ones.
+
     for folder in folders:
         print('-----------------------------')
         print('Analysis of', folder, '\n')
