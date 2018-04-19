@@ -19,7 +19,7 @@ how the anlysis would treat each of them, as well as what the input files should
 
 R packages necessary:
 * `install.packages('nortest')`
-* `install.packgaes('diptest')`
+* `install.packages('diptest')`
 * `install.packages('moments')`
 
 Python3 packages necessary:
