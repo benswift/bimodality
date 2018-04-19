@@ -45,11 +45,11 @@ Will look like:
 Analysis of gaussuniversity 
 
 Shapiro Wilk: if rejected, is not normally-distributed
-110 tested	 5.45 % rejected and are not-normal	 95 % fail to reject
+110 tested	 9.09 % rejected and are not-normal	 91 % fail to reject
 
 Hartigan Dip Test where Kurtosis < 3
-68.18 % have kurtosis < 3	 2.92 mean kurtosis
-8 reject NH (and so are multimodal)	 7.27 % of total are multimodal
+65.45 % have kurtosis < 3	 2.9 mean kurtosis
+2 reject NH (and so are multimodal)	 1.82 % of total are multimodal
 
 -----------------------------
 Analysis of twohumpscollege 
@@ -68,16 +68,16 @@ Shapiro Wilk: if rejected, is not normally-distributed
 110 tested	 96.36 % rejected and are not-normal	 4 % fail to reject
 
 Hartigan Dip Test where Kurtosis < 3
-97.27 % have kurtosis < 3	 2.41 mean kurtosis
-1 reject NH (and so are multimodal)	 0.91 % of total are multimodal
+99.09 % have kurtosis < 3	 2.34 mean kurtosis
+0 reject NH (and so are multimodal)	 0.0 % of total are multimodal
 
 -----------------------------
 Analysis of uoftruncation 
 
 Shapiro Wilk: if rejected, is not normally-distributed
-110 tested	 22.73 % rejected and are not-normal	 77 % fail to reject
+110 tested	 28.18 % rejected and are not-normal	 72 % fail to reject
 
 Hartigan Dip Test where Kurtosis < 3
-83.64 % have kurtosis < 3	 2.71 mean kurtosis
-11 reject NH (and so are multimodal)	 10.0 % of total are multimodal
+73.64 % have kurtosis < 3	 2.71 mean kurtosis
+14 reject NH (and so are multimodal)	 12.73 % of total are multimodal
 ```
