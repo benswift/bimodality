@@ -6,8 +6,7 @@ This is the code I used for the grade analysis study in https://dl.acm.org/citat
 
 Hopefully with the code freely available we can have some replications! :)
 
-~~~~~~~~~~~~~~~
-
+## The Data
 I can't share the original data, so I have produced four data sets to let you see
 how the anlysis would treat each of them, as well as what the input files should look like.
 
@@ -16,21 +15,19 @@ Two Humps College --- grades are bimodal
 Neitherton Polytechnic --- grades are neither normal nor bimodal (triangular, to be specific)
 University of Truncation --- grades are normal but the students are all really good and too many of them would get grades above 100, but are truncated down to 100
 
-~~~~~~~~~~~~~~~
-
-To run the code
+## To run the code
 
 R packages necessary:
 
 open R:
-> install.packages('nortest')
-> install.packgaes('diptest')
-> install.packages('moments')
+* install.packages('nortest')
+* install.packgaes('diptest')
+* install.packages('moments')
 
 Python3 packages necessary:
 numpy
 
-~~~~~~~~~~~~~~~
+## Analysis process
 
 Analyisis proceeds with:
 
