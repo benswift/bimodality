@@ -1,7 +1,5 @@
 import numpy as np
 
-# Gauss University
-
 
 def grade_bounding(d):
     '''(np array) -> np array
@@ -11,14 +9,21 @@ def grade_bounding(d):
     return d
 
 def normal_to_int(centre, stdev):
+    # return an int generated from a normal distrib with mean of centre
+    # and sd of stdev
     return max(int(np.round(np.random.normal(centre, stdev, 1))), 0)
 
 def normal_to_ints(centre, stdev, size):
+    # return array of ints, randomly generated normal distribution
+    # with a mean of centre, stdev of stdev, and size many data points
     d = np.round(np.random.normal(centre, stdev, size)).astype(int)
     return grade_bounding(d)
 
 
 def generate_university(folder, coursecode, allyears, courses_taught, terms, gen_function):
+    # make random data for each course offering at the university
+    # and output it to a csv file in folder
+    # how the random data is made is determined by gen_function
     for year in allyears:
         for term in terms:
             for coursenum in courses_taught:
@@ -33,6 +38,8 @@ def generate_university(folder, coursecode, allyears, courses_taught, terms, gen
 
 
 def gauss_university_gen(courses_taught, coursenum, size):
+    # gaussian, usually with mean of 50 and sd of 10 but
+    # throw in some variation to that
     centre = normal_to_int(50, 2)
     stdev = max(0.5, normal_to_int(10, 1))
 
@@ -41,6 +48,9 @@ def gauss_university_gen(courses_taught, coursenum, size):
 
 
 def gauss_truncated_gen(courses_taught, coursenum, size):
+    # gaussian, usually with mean of 80 and sd of 10 but
+    # throw in some variation to that
+    # numbers above 100 get truncated by normal_to_ints
     centre = normal_to_int(80, 2) 
     stdev = max(1, normal_to_int(10, 1))
 
@@ -49,6 +59,8 @@ def gauss_truncated_gen(courses_taught, coursenum, size):
 
 
 def twohumps_gen(courses_taught, coursenum, size):
+    # this time generate very separate gaussians and concat them
+
     # size: assume both `humps' are of the same size
     size = max(normal_to_int(courses_taught[coursenum], 20), 8) # AD test needs n>7
 
@@ -73,17 +85,23 @@ def neither_gen(courses_taught, coursenum, size):
     return d          
 
 
-
-if __name__ == '__main__':
+def university(name, generating_function):
+    # for each of the four fake universities
+    # standardize between the data sets what courses they offer
     coursecode = 'CSC'
     allyears = range(2000, 2005)
     courses_taught = {100:500, 101:300, 105:100, 200:200, 201:100, 202:100, 300:60, 301:60, 302:50, 333:60, 400:50} #value is median class size
     terms = [1, 2]
+    
+    generate_university(name, coursecode, allyears, courses_taught, terms, generating_function)
 
-    generate_university('gaussuniversity', coursecode, allyears, courses_taught, terms, gauss_university_gen)
 
-    generate_university('twohumpscollege', coursecode, allyears, courses_taught, terms, twohumps_gen)
+if __name__ == '__main__':
+    # generate data for the four universities
+    unis = {'gaussuniversity':gauss_university_gen,
+            'twohumpscollege':twohumps_gen,
+            'neithertonpolytechnic':neither_gen,
+            'uoftruncation':gauss_truncated_gen}
 
-    generate_university('neithertonpolytechnic', coursecode, allyears, courses_taught, terms, neither_gen)
-
-    generate_university('uoftruncation', coursecode, allyears, courses_taught, terms, gauss_truncated_gen)
+    for u in unis:
+        university(u, unis[u])
