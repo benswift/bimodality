@@ -81,3 +81,14 @@ Hartigan Dip Test where Kurtosis < 3
 73.64 % have kurtosis < 3	 2.71 mean kurtosis
 14 reject NH (and so are multimodal)	 12.73 % of total are multimodal
 ```
+
+## How to replicate with your own data
+
+If you have grades data from your own institution that you would like to run this analysis on it, it's straightforward to do so:
+
+1. Make a folder to put your own data in. 
+1. Each distribution should have its own file in that folder.
+1. Have a look at the files in the other folders for how it should be formatted. It'll have one line like `gaussuniversity;2000;1;CSC;100` indicating that this the Term 1 offering from 2000 of CSC 100 at gauss university. The rest of the file has each grade from the class on a new line. You might need to write some scripts to munge your data into this format.
+1. Head over to `data_analysis.py` and scroll down to the bottom of the program. You'll see a comment on how to update the file to have it use the data from your own folder.
+
+If you're doing this analysis on multiple grades distributions from the same course (e.g. you want to run it on each assignment, each exam, etc) then feel free to make use of the semester parameter (or create a similar parameter) to keep track of the different distributions.
