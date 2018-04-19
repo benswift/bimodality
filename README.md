@@ -10,10 +10,10 @@ Hopefully with the code freely available we can have some replications! :)
 I can't share the original data, so I have produced four data sets to let you see
 how the anlysis would treat each of them, as well as what the input files should look like.
 
-Gauss University --- grades are normal
-Two Humps College --- grades are bimodal
-Neitherton Polytechnic --- grades are neither normal nor bimodal (triangular, to be specific)
-University of Truncation --- grades are normal but the students are all really good and too many of them would get grades above 100, but are truncated down to 100
+* Gauss University, where grades are normal
+* Two Humps College, where grades are bimodal
+* Neitherton Polytechnic, where grades are neither normal nor bimodal (triangular, to be specific)
+* University of Truncation, where grades are normal but the students are all really good and too many of them would get grades above 100, but are truncated down to 100
 
 ## To run the code
 
