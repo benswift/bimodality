@@ -18,34 +18,29 @@ University of Truncation --- grades are normal but the students are all really g
 ## To run the code
 
 R packages necessary:
-
-open R:
-* install.packages('nortest')
-* install.packgaes('diptest')
-* install.packages('moments')
+* `install.packages('nortest')`
+* `install.packgaes('diptest')`
+* `install.packages('moments')`
 
 Python3 packages necessary:
-numpy
+* `numpy`
 
 ## Analysis process
 
 Analyisis proceeds with:
 
-Input: for each course there is a single file with a list of grades
+### Input
+for each course there is a single file with a list of grades, each grade is on a new line
 
-data_analysis.py:
-1-  for each file in the input folder, have one_class_stats.r execute
-    and process the file. It computes the stats such as kurtosis, dip test,
-    Shapiro-Wilk, and then outputs them to a file in r_output/
-2-  then we round up each file in r_output/ and concatenate them into a table
-    so we can see the stats for all distributions of interest
-    (a spreadsheet is put in aggregate_statistics/)
-3-  with this table, we compute how many stat tests had their null hypotheses
-    rejected or not
+### data_analysis.py
+1. for each file in the input folder, have `one_class_stats.r` execute and process the file. It computes the stats such as kurtosis, dip test, Shapiro-Wilk, and then outputs them to a file in `r_output/`
+1. then we round up each file in `r_output` and concatenate them into a table so we can see the stats for all distributions of interest (a spreadsheet is put in `aggregate_statistics`)
+1. with this table, we compute how many stat tests had their null hypotheses rejected or not
 
+### Output
 
-Output looks like:
-
+Will look like:
+```
 -----------------------------
 Analysis of gaussuniversity 
 
@@ -85,5 +80,4 @@ Shapiro Wilk: if rejected, is not normally-distributed
 Hartigan Dip Test where Kurtosis < 3
 83.64 % have kurtosis < 3	 2.71 mean kurtosis
 11 reject NH (and so are multimodal)	 10.0 % of total are multimodal
-
-
+```
