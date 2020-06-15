@@ -3,7 +3,7 @@ library("readxl")
 library("lubridate")
 
 ## "min class size" threshold
-min_students = 20
+min_students = 30
 
 which_semester <- function(dttm){
   ifelse(month(dttm)<=6, 1, 2)
