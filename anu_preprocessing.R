@@ -28,9 +28,8 @@ write_semester_grade_file <- function(year, semester, course, marks){
 ## if you want "COMPXXXX", then add this to the mutate() call: "course" =
 ## paste(Subject, `Class Number`, sep="")
 
-## do all the things
+## read in the data
 df = read_excel("anu.xlsx") %>% mutate(year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>% select(year, semester, `Class Number`, mark) %>% rename(course = `Class Number`)
 
-## write_semester_grade_file(df)
-
+## write the individual csv files as required by the rest of the scripts
 df %>% group_by(year, semester, course) %>% group_walk(~ write_semester_grade_file(.y$year, .y$semester, .y$course, .x$mark))
