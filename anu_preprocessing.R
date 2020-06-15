@@ -2,6 +2,9 @@ library("tidyverse")
 library("readxl")
 library("lubridate")
 
+## "min class size" threshold
+min_students = 20
+
 which_semester <- function(dttm){
   ifelse(month(dttm)<=6, 1, 2)
 }
@@ -13,13 +16,13 @@ which_semester <- function(dttm){
 ## for one class
 ## 2000-1-CSC-100.csv
 
-write_bimodal_grade_file <- function(df){
-  year = df$year[1]
-  semester = df$semester[1]
-  course = df$course[1]
-  filename = sprintf("anu/%d-%d-COMP-%d.csv", year, semester, course)
-  cat(sprintf("anu;%d;%d;COMP;%d\n", year, semester, course), file = filename)
-  cat(df$mark[!is.na(df$mark)], file = filename, append = TRUE, sep = "\n")
+write_semester_grade_file <- function(year, semester, course, marks){
+  marks = marks[!is.na(marks)] # remove NAs
+  if (length(marks) > min_students) {
+    filename = sprintf("anu/%d-%d-COMP-%d.csv", year, semester, course)
+    cat(sprintf("anu;%d;%d;COMP;%d\n", year, semester, course), file = filename)
+    cat(marks, file = filename, append = TRUE, sep = "\n")
+  }
 }
 
 ## if you want "COMPXXXX", then add this to the mutate() call: "course" =
@@ -28,5 +31,6 @@ write_bimodal_grade_file <- function(df){
 ## do all the things
 df = read_excel("anu/all.xlsx") %>% mutate(year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>% select(year, semester, `Class Number`, mark) %>% rename(course = `Class Number`)
 
-## TODO doesn't quite work yet
-write_bimodal_grade_file(head(df))
+## write_semester_grade_file(df)
+
+df %>% group_by(year, semester, course) %>% group_walk(~ write_semester_grade_file(.y$year, .y$semester, .y$course, .x$mark))
