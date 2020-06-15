@@ -33,3 +33,13 @@ df = read_excel("anu.xlsx") %>% mutate(year = year(`Census Date`), semester = wh
 
 ## write the individual csv files as required by the rest of the scripts
 df %>% group_by(year, semester, course) %>% group_walk(~ write_semester_grade_file(.y$year, .y$semester, .y$course, .x$mark))
+
+## visualisation
+
+ggplot(df, aes(mark)) +
+  geom_histogram(breaks = seq(0, 100, 5)) +
+  facet_wrap(~year)
+
+ggplot(df, aes(mark)) +
+  geom_histogram(breaks = seq(0, 100, 5)) +
+  facet_wrap(~course)
