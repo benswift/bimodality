@@ -29,7 +29,7 @@ write_semester_grade_file <- function(year, semester, course, marks){
 ## paste(Subject, `Class Number`, sep="")
 
 ## do all the things
-df = read_excel("anu/all.xlsx") %>% mutate(year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>% select(year, semester, `Class Number`, mark) %>% rename(course = `Class Number`)
+df = read_excel("anu.xlsx") %>% mutate(year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>% select(year, semester, `Class Number`, mark) %>% rename(course = `Class Number`)
 
 ## write_semester_grade_file(df)
 
