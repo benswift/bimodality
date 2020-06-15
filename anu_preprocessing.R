@@ -14,10 +14,9 @@ which_semester <- function(dttm){
 ## 2000-1-CSC-100.csv
 
 write_bimodal_grade_file <- function(df){
-  print(df)
-  year = df$year[0]
-  semester = df$semester[0]
-  course = df$course[0]
+  year = df$year[1]
+  semester = df$semester[1]
+  course = df$course[1]
   filename = sprintf("anu/%d-%d-COMP-%d.csv", year, semester, course)
   cat(sprintf("anu;%d;%d;COMP;%d\n", year, semester, course), file = filename)
   cat(df$mark, file = filename, append = TRUE, sep = "\n")
