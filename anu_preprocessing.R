@@ -19,7 +19,7 @@ write_bimodal_grade_file <- function(df){
   course = df$course[1]
   filename = sprintf("anu/%d-%d-COMP-%d.csv", year, semester, course)
   cat(sprintf("anu;%d;%d;COMP;%d\n", year, semester, course), file = filename)
-  cat(df$mark, file = filename, append = TRUE, sep = "\n")
+  cat(df$mark[!is.na(df$mark)], file = filename, append = TRUE, sep = "\n")
 }
 
 ## if you want "COMPXXXX", then add this to the mutate() call: "course" =
