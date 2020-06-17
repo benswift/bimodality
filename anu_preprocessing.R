@@ -36,10 +36,23 @@ df %>% group_by(year, semester, course) %>% group_walk(~ write_semester_grade_fi
 
 ## visualisation
 
-ggplot(df, aes(mark, fill = grade)) +
-  geom_histogram(breaks = seq(0, 100, 5)) +
-  facet_wrap(~year)
+theme_set(theme_gray(base_size = 25))
 
 ggplot(df, aes(mark)) +
   geom_histogram(breaks = seq(0, 100, 5)) +
-  facet_wrap(~course)
+  labs(title = "COMP (1996-2019)")
+
+ggplot(df, aes(mark)) +
+  geom_histogram(breaks = seq(0, 100, 5)) +
+  facet_wrap(~year) +
+  labs(title = "COMP marks by year")
+
+ggplot(df %>% filter(!is.na(residency)), aes(mark)) +
+  geom_histogram(breaks = seq(0, 100, 5)) +
+  facet_grid(residency~year) +
+  labs(title = "COMP marks by year & residency")
+
+## ggplot(df, aes(mark)) +
+##   geom_histogram(breaks = seq(0, 100, 5)) +
+##   facet_wrap(~course) +
+##   labs(title = "COMP marks by course")
