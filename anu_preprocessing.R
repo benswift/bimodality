@@ -29,14 +29,14 @@ write_semester_grade_file <- function(year, semester, course, marks){
 ## paste(Subject, `Class Number`, sep="")
 
 ## read in the data
-df = read_excel("anu.xlsx") %>% mutate(year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>% select(year, semester, `Class Number`, mark) %>% rename(course = `Class Number`)
+df = read_excel("anu.xlsx") %>% mutate(year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>% select(Gender, Residency, year, semester, `Class Number`, mark, `Official Grade`) %>% rename(course = `Class Number`, gender = Gender, residency = Residency, grade = `Official Grade`)
 
 ## write the individual csv files as required by the rest of the scripts
 df %>% group_by(year, semester, course) %>% group_walk(~ write_semester_grade_file(.y$year, .y$semester, .y$course, .x$mark))
 
 ## visualisation
 
-ggplot(df, aes(mark)) +
+ggplot(df, aes(mark, fill = grade)) +
   geom_histogram(breaks = seq(0, 100, 5)) +
   facet_wrap(~year)
 
