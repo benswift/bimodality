@@ -1,6 +1,9 @@
 library("tidyverse")
 library("readxl")
 library("lubridate")
+library("diptest")
+library("nortest")
+library("moments")
 
 ## "min class size" threshold
 min_students = 30
@@ -30,6 +33,26 @@ df = read_excel("anu.xlsx") %>%
   mutate(year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>%
   select(Gender, Residency, year, semester, `Class Number`, mark, `Official Grade`) %>%
   rename(course = `Class Number`, gender = Gender, residency = Residency, grade = `Official Grade`)
+
+## calculate the relevant statistics
+df %>%
+  filter(!is.na(mark)) %>%
+  group_by(year, semester, course) %>%
+  filter(length(mark) > min_students) %>%
+  summarize(n = length(mark),
+            mean = mean(mark),
+            sd = sd(mark),
+            kurtosis = kurtosis(mark),
+            skewness = skewness(mark),
+            dip = dip.test(mark)[[1]],
+            pDip = dip.test(mark)[[2]],
+            shapiro = shapiro.test(mark)[[1]],
+            pShapiro = shapiro.test(mark)[[2]],
+            ad = ad.test(mark)[[1]],
+            pAd = ad.test(mark)[[2]],
+            logShapiro = shapiro.test(log(mark))[[1]],
+            pLogShapiro = shapiro.test(log(mark))[[2]]) %>%
+  summarize(shapRejected = mean(pShapiro < 0.05))
 
 ## write the individual csv files as required by the rest of the scripts
 df %>%
