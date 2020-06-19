@@ -25,11 +25,6 @@ write_semester_grade_file <- function(year, semester, course, marks){
   }
 }
 
-mode <- function(v) {
-  uniqv <- unique(v)
-  uniqv[which.max(tabulate(match(v, uniqv)))]
-}
-
 ## read in the data
 df = read_excel("anu.xlsx") %>%
   mutate(year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>%
