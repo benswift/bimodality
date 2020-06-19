@@ -45,7 +45,7 @@ theme_set(theme_gray(base_size = 25))
 
 ggplot(df, aes(mark)) +
   geom_histogram(breaks = seq(0, 100, 5)) +
-  labs(title = "COMP (1996-2019)")
+  labs(title = "COMP marks (1996-2019)")
 
 ggplot(df, aes(mark)) +
   geom_histogram(breaks = seq(0, 100, 5)) +
