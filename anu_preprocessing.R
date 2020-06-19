@@ -25,6 +25,11 @@ write_semester_grade_file <- function(year, semester, course, marks){
   }
 }
 
+mode <- function(v) {
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
 ## if you want "COMPXXXX", then add this to the mutate() call: "course" =
 ## paste(Subject, `Class Number`, sep="")
 
