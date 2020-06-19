@@ -67,33 +67,3 @@ ggplot(df %>% filter(!is.na(residency)), aes(year, mark)) +
   geom_smooth(method = "lm") +
   facet_wrap(~residency, dir="v") +
   labs(title = "COMP marks over time")
-
-## ggplot(df, aes(mark)) +
-##   geom_histogram(breaks = seq(0, 100, 5)) +
-##   facet_wrap(~course) +
-##   labs(title = "COMP marks by course")
-
-
-## stats
-
-df %>%
-  filter(!is.na(mark)) %>%
-  group_by(year) %>%
-  summarise(n = length(mark), mean = mean(mark), median = median(mark), mode = mode(mark)) %>%
-  write_csv("summary-stats.csv")
-
-df %>%
-  filter(!is.na(mark)) %>%
-  group_by(year, course) %>%
-  summarise(n = length(mark), mean = mean(mark), median = median(mark), mode = mode(mark)) %>%
-  write_csv("summary-stats-by-course.csv")
-
-## means of means, etc
-df %>% filter(!is.na(mark)) %>%
-  group_by(year, course) %>%
-  summarise(n = length(mark), mean = mean(mark), median = median(mark), mode = mode(mark)) %>%
-  group_by(year) %>%
-  summarise(n = sum(n), mean = mean(mean), median = median(median), mode = mode(mode)) %>%
-  write_csv("summary-stats-means-of-means.csv")
-
-df %>% group_by(grade) %>% summarise(n = count(mark))
