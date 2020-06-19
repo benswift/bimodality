@@ -57,6 +57,17 @@ ggplot(df %>% filter(!is.na(residency)), aes(mark)) +
   facet_grid(residency~year) +
   labs(title = "COMP marks by year & residency")
 
+ggplot(df, aes(year, mark)) +
+  geom_point(alpha = 0.01) +
+  geom_smooth(method = "lm") +
+  labs(title = "COMP marks over time")
+
+ggplot(df %>% filter(!is.na(residency)), aes(year, mark)) +
+  geom_point(alpha = 0.01) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~residency, dir="v") +
+  labs(title = "COMP marks over time")
+
 ## ggplot(df, aes(mark)) +
 ##   geom_histogram(breaks = seq(0, 100, 5)) +
 ##   facet_wrap(~course) +
