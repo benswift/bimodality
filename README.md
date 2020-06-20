@@ -73,11 +73,11 @@ R> data
 # Groups:   institution, year, term, course [3,520]
    institution          year     term course  mark
    <chr>               <int>    <int>  <int> <dbl>
- 1 Gaussian University  2010        1    100  62.0
- 2 Gaussian University  2010        1    100  42.6
- 3 Gaussian University  2010        1    100  31.2
- 4 Gaussian University  2010        1    100  60.7
- 5 Gaussian University  2010        1    100  48.7
+ 1 Gaussian University  2010             1    100  62.0
+ 2 Gaussian University  2010             1    100  42.6
+ 3 Gaussian University  2010             1    100  31.2
+ 4 Gaussian University  2010             1    100  60.7
+ 5 Gaussian University  2010             1    100  48.7
  6 University of Truncation  2010        1    100  69.4
  7 University of Truncation  2010        1    100  82.4
  8 University of Truncation  2010        1    100  77.5
