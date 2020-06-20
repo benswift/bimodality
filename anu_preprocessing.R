@@ -8,18 +8,14 @@ library("moments")
 ## "min class size" threshold
 min_students = 30
 
-## the ANU data dump doesn't explicitly include a "semester" column, so we'll
-## just guess based on census date (this just guesses S1 or S2; doesn't handle
-## summer/winter terms etc.)
-which_semester <- function(dttm){
-  ifelse(month(dttm)<=6, 1, 2)
-}
-
 ## read data into a tidy tibble
 data = read_excel("anu.xlsx") %>%
   mutate(institution = "ANU",
          year = year(`Census Date`),
-         semester = which_semester(`Census Date`),
+         ## the ANU data dump doesn't explicitly include a "semester" column, so we'll
+         ## just guess based on census date (this just guesses S1 or S2; doesn't handle
+         ## summer/winter terms etc.)
+         semester = if_else(month(`Census Date`)<=6, 1, 2),
          mark = as.numeric(`Grade Input`)) %>%
   select(institution,
          Gender,
