@@ -70,19 +70,23 @@ Here's an example (from the fake data mentioned above)
 ```R
 R> data
 # A tibble: 105,600 x 5
-# Groups:   institution, year, term, course [3,520]
-   institution          year     term course  mark
-   <chr>               <int>    <int>  <int> <dbl>
- 1 Gaussian University       2010        1    100  62.0
- 2 Gaussian University       2010        1    100  42.6
- 3 Gaussian University       2010        1    100  31.2
- 4 Gaussian University       2010        1    100  60.7
- 5 Gaussian University       2010        1    100  48.7
- 6 University of Truncation  2010        1    100  69.4
- 7 University of Truncation  2010        1    100  82.4
- 8 University of Truncation  2010        1    100  77.5
- 9 University of Truncation  2010        1    100  80.8
-# … with 79,190 more rows
+# Groups:   institution, year, term, course [2,640]
+   institution               year  term course  mark
+   <chr>                    <int> <int>  <int> <dbl>
+ 1 University of Truncation  2010     1    100  95.5
+ 2 University of Truncation  2010     1    100  87.9
+ 3 University of Truncation  2010     1    100  88.4
+ 4 University of Truncation  2010     1    100  69.4
+ 5 University of Truncation  2010     1    100  82.4
+
+## ... a bunch more rows here...
+
+ 6 Gaussian University       2010     1    100  49.7
+ 7 Gaussian University       2010     1    100  49.8
+ 8 Gaussian University       2010     1    100  57.3
+ 9 Gaussian University       2010     1    100  58.6
+10 Gaussian University       2010     1    100  52.9
+# … with 105,590 more rows
 ```
 
 How you create your `data` is up to you - you could prepare a csv file and use
