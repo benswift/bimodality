@@ -2,11 +2,12 @@
 
 Grade distribution analysis: are CS grades bimodal?
 
-by Elizabeth Patitsas, April 18, 2018
+by Elizabeth Patitsas (<elizabeth.patitsas@mcgill.ca>), April 18, 2018
 
-Updates by Ben Swift, June 2020 (<ben.swift@anu.edu.au>)
+Updates by Ben Swift (<ben.swift@anu.edu.au>), June 2020
 
-This is the code I used for the grade analysis study in https://dl.acm.org/citation.cfm?doid=2960310.2960312
+This is the code I used for the grade analysis study in
+<https://dl.acm.org/citation.cfm?doid=2960310.2960312>
 
 Hopefully with the code freely available we can have some replications! :)
 
@@ -20,10 +21,13 @@ distributions.
 Out-of-the-box, `fake_data.R` will generate data for the following "fake"
 institutions:
 
-* Gauss University, where grades are normal
-* Two Humps College, where grades are bimodal
-* Neitherton Polytechnic, where grades are neither normal nor bimodal (triangular, to be specific)
-* University of Truncation, where grades are normal but the students are all really good and too many of them would get grades above 100, but are truncated down to 100
+- **Gauss University**, where grades are normal
+- **Two Humps College**, where grades are bimodal
+- **Neitherton Polytechnic**, where grades are neither normal nor bimodal
+  (triangular, to be specific)
+- **University of Truncation**, where grades are normal but the students are all
+  really good and too many of them would get grades above 100, but are truncated
+  down to 100
 
 ## Setup
 
@@ -113,7 +117,7 @@ R> stats %>%
   <chr>                                       <dbl>                     <dbl>
 1 Gaussian University                          5.57                     0.114
 2 Neitherton Polytechnic                      48.4                      0.909
-3 Two Humps University                       100                      100
+3 Two Humps College                          100                      100
 4 University of Truncation                     4.55                     0.227
 ```
 
