@@ -57,6 +57,13 @@ stats = data %>%
             p_log_shapiro = shapiro.test(log(mark))[[2]]) %>%
   ungroup()
 
+## bimodality (and other distributional) tests
+
+stats %>%
+  group_by(institution) %>%
+  summarise(percent_shapiro_rejected = mean(p_shapiro < 0.05) * 100,
+            percent_dip_test_rejected = mean(kurtosis < 3 & p_dip < 0.05) * 100)
+
 ## visualisation
 
 theme_set(theme_gray(base_size = 25))
