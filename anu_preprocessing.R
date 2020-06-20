@@ -17,28 +17,32 @@ which_semester <- function(dttm){
 
 ## read in the data
 data = read_excel("anu.xlsx") %>%
-  mutate(year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>%
-  select(Gender, Residency, year, semester, `Class Number`, mark, `Official Grade`) %>%
+  mutate(institution = "ANU", year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>%
+  select(institution, Gender, Residency, year, semester, `Class Number`, mark, `Official Grade`) %>%
   rename(course = `Class Number`, gender = Gender, residency = Residency, grade = `Official Grade`)
 
 ## calculate the relevant statistics
 stats = data %>%
   filter(!is.na(mark)) %>%
-  group_by(year, semester, course) %>%
+  group_by(institution, year, semester, course) %>%
   filter(length(mark) > min_students) %>%
   summarize(n = length(mark),
             mean = mean(mark),
             sd = sd(mark),
             kurtosis = kurtosis(mark),
             skewness = skewness(mark),
+            ## Hartigans' Dip Test for Unimodality
             dip = dip.test(mark)[[1]],
-            pDip = dip.test(mark)[[2]],
+            p_dip = dip.test(mark)[[2]],
+            ## Shapiro-Wilk Normality Test
             shapiro = shapiro.test(mark)[[1]],
-            pShapiro = shapiro.test(mark)[[2]],
+            p_shapiro = shapiro.test(mark)[[2]],
+            ## Anderson-Darling test for normality
             ad = ad.test(mark)[[1]],
-            pAd = ad.test(mark)[[2]],
-            logShapiro = shapiro.test(log(mark))[[1]],
-            pLogShapiro = shapiro.test(log(mark))[[2]])
+            p_ad = ad.test(mark)[[2]],
+            log_shapiro = shapiro.test(log(mark))[[1]],
+            p_log_shapiro = shapiro.test(log(mark))[[2]]) %>%
+  ungroup()
 
 ## visualisation
 
