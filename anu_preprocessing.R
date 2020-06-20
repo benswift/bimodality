@@ -38,8 +38,7 @@ stats = data %>%
             ad = ad.test(mark)[[1]],
             pAd = ad.test(mark)[[2]],
             logShapiro = shapiro.test(log(mark))[[1]],
-            pLogShapiro = shapiro.test(log(mark))[[2]]) %>%
-  summarize(shapRejected = mean(pShapiro < 0.05))
+            pLogShapiro = shapiro.test(log(mark))[[2]])
 
 ## visualisation
 
