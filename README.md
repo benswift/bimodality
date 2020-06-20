@@ -4,7 +4,7 @@ Grade distribution analysis: are CS grades bimodal?
 
 by Elizabeth Patitsas (<elizabeth.patitsas@mcgill.ca>), April 18, 2018
 
-Updates by Ben Swift (<ben.swift@anu.edu.au>), June 2020
+code refactor by Ben Swift (<ben.swift@anu.edu.au>), June 2020
 
 This is the code I used for the grade analysis study in
 <https://dl.acm.org/citation.cfm?doid=2960310.2960312>
