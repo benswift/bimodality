@@ -15,11 +15,24 @@ which_semester <- function(dttm){
   ifelse(month(dttm)<=6, 1, 2)
 }
 
-## read in the data
+## read data into a tidy tibble
 data = read_excel("anu.xlsx") %>%
-  mutate(institution = "ANU", year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>%
-  select(institution, Gender, Residency, year, semester, `Class Number`, mark, `Official Grade`) %>%
-  rename(course = `Class Number`, gender = Gender, residency = Residency, grade = `Official Grade`)
+  mutate(institution = "ANU",
+         year = year(`Census Date`),
+         semester = which_semester(`Census Date`),
+         mark = as.numeric(`Grade Input`)) %>%
+  select(institution,
+         Gender,
+         Residency,
+         year,
+         semester,
+         `Class Number`,
+         mark,
+         `Official Grade`) %>%
+  rename(course = `Class Number`,
+         gender = Gender,
+         residency = Residency,
+         grade = `Official Grade`)
 
 ## calculate the relevant statistics
 stats = data %>%
