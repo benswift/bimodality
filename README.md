@@ -11,7 +11,7 @@ This is the code I used for the grade analysis study in
 
 Hopefully with the code freely available we can have some replications! :)
 
-## The Data
+## Data
 
 This repo doesn't contain any actual student data (since there are restrictions
 around sharing that stuff). Instead, it contains functionality (in
@@ -28,6 +28,12 @@ institutions:
 - **University of Truncation**, where grades are normal but the students are all
   really good and too many of them would get grades above 100, but are truncated
   down to 100
+
+> NOTE: if you _are_ going to use real data from your classes, be careful about
+> committing the data file(s) to the git repo if you're working in a public
+> GitHub project. One helpful tip: put all your real data files in the `data/`
+> folder and add that directory to your `.gitignore` file so you don't commit it
+> by mistake.
 
 ## Setup
 
