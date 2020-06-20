@@ -34,7 +34,7 @@ data = bind_rows(
 
   gen_fake_data("Neitherton Polytechnic", function(n) clamp_mark(rtriangle(n, 0, 100, 100))),
 
-  gen_fake_data("Two Humps University", function(n) {
+  gen_fake_data("Two Humps College", function(n) {
     c(clamp_mark(rnorm(n/2, 85, 2)), clamp_mark(rnorm(n/2, 40, 2)))
   })
 )
