@@ -98,10 +98,12 @@ other way.
 If you're after some more guidance on how to prepare your `data` tibble, there
 are a couple of examples in `preprocessing.R`:
 
-- iterating over a directory full of CSV files (with a specific naming pattern),
-  loading them all into a single tibble
+- **example 1**: iterating over a directory full of CSV files with a specific
+  naming pattern, loading them all into a single tibble (NOTE: this example is
+  based on the old data format used in this project, `git checkout 481b408` for
+  more details)
 
-- loading (and optionally re-shaping) the data from Excel spreadsheet
+- **example 2**: loading (and optionally re-shaping) the data from Excel spreadsheet
 
 ### Analysis
 
