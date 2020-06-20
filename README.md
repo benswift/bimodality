@@ -129,6 +129,13 @@ In terms of interpreting this output:
   3 _and_ the null hypothesis under the Hartigan dip test (that the data is not
   multimodal) can be rejected at p < 0.05
 
+### Visualisation
+
+There's also some simple data visualisation examples at the bottom of
+`bimodality.R` which use the amazing
+[`ggplot2`](https://ggplot2.tidyverse.org/index.html) library. They might be a
+helpful starting point for any other ways you might want to look at the data.
+
 ## Contributing
 
 Sharing real grade data around between institutions is tricky, but having
