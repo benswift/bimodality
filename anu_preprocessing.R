@@ -7,7 +7,7 @@ library("lubridate")
 ## if there's already a "data" tibble (e.g. from fake_data.R) then this will
 ## overwrite it, so that may/may not be what you want - adjust variable names as
 ## necessary
-data = read_excel("anu.xlsx") %>%
+data = read_excel("data/anu.xlsx") %>%
   mutate(institution = "ANU",
          year = year(`Census Date`),
          ## the ANU data dump doesn't explicitly include a "term" column, so we'll
