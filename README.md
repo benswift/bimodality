@@ -51,8 +51,9 @@ probably comment out the visualisation code at the end).
 ### Data input
 
 The `bimodality.R` script assumes that the data for your courses is loaded into
-a DataFrame[^tibble] called `data`. Each row of `data` represents **one
-student's mark**, and has the following columns:
+a [tibble](https://tibble.tidyverse.org/) (which is just like a DataFrame)
+called `data`. Each row of `data` represents **one student's mark**, and has the
+following columns:
 
 - `institution` (_character_): the name of the institution
 - `year` (_int_): the year the course was taken
@@ -89,19 +90,18 @@ R> data
 # … with 105,590 more rows
 ```
 
-How you create your `data` is up to you - you could prepare a csv file and use
+How you create your `data` tibble is up to you---you could store your mark data
+in a csv file and use
 [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html), or some
 other way.
 
-If you're after an example of how to load & munge an Excel spreadsheet (e.g. an
-automated report from your student mark database) into the right shape, then
-have a look in `ANU_preprocessing.R` and modify to taste. That file contains
-code that [Ben](https://benswift.me) uses to work with the spreadsheet that
-comes out of the student mark reporting system at the Australian National
-University, so it probably won't work for you as-is, but might help you get your
-own data into shape.
+If you're after some more guidance on how to prepare your `data` tibble, there
+are a couple of examples in `preprocessing.R`:
 
-[^tibble]: well, a [tibble](https://tibble.tidyverse.org/) actually
+- iterating over a directory full of CSV files (with a specific naming pattern),
+  loading them all into a single tibble
+
+- loading (and optionally re-shaping) the data from Excel spreadsheet
 
 ### Analysis
 
