@@ -12,15 +12,6 @@ which_semester <- function(dttm){
   ifelse(month(dttm)<=6, 1, 2)
 }
 
-write_semester_grade_file <- function(year, semester, course, marks){
-  marks = marks[!is.na(marks)] # remove NAs
-  if (length(marks) > min_students) {
-    filename = sprintf("anu/%d-%d-COMP-%d.csv", year, semester, course)
-    cat(sprintf("anu;%d;%d;COMP;%d\n", year, semester, course), file = filename)
-    cat(marks, file = filename, append = TRUE, sep = "\n")
-  }
-}
-
 ## read in the data
 data = read_excel("anu.xlsx") %>%
   mutate(year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>%
@@ -46,11 +37,6 @@ stats = data %>%
             logShapiro = shapiro.test(log(mark))[[1]],
             pLogShapiro = shapiro.test(log(mark))[[2]]) %>%
   summarize(shapRejected = mean(pShapiro < 0.05))
-
-## write the individual csv files as required by the rest of the scripts
-data %>%
-  group_by(year, semester, course) %>%
-  group_walk(~ write_semester_grade_file(.y$year, .y$semester, .y$course, .x$mark))
 
 ## visualisation
 
