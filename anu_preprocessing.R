@@ -12,13 +12,6 @@ which_semester <- function(dttm){
   ifelse(month(dttm)<=6, 1, 2)
 }
 
-## to see all the unique year/month combos for the census dates
-## unique(cbind(year(df[["Census Date"]]), month(df[["Census Date"]])))
-
-## this function assumes that you're giving it a df which contains only the data
-## for one class
-## 2000-1-CSC-100.csv
-
 write_semester_grade_file <- function(year, semester, course, marks){
   marks = marks[!is.na(marks)] # remove NAs
   if (length(marks) > min_students) {
@@ -29,13 +22,13 @@ write_semester_grade_file <- function(year, semester, course, marks){
 }
 
 ## read in the data
-df = read_excel("anu.xlsx") %>%
+data = read_excel("anu.xlsx") %>%
   mutate(year = year(`Census Date`), semester = which_semester(`Census Date`), mark = as.numeric(`Grade Input`)) %>%
   select(Gender, Residency, year, semester, `Class Number`, mark, `Official Grade`) %>%
   rename(course = `Class Number`, gender = Gender, residency = Residency, grade = `Official Grade`)
 
 ## calculate the relevant statistics
-df %>%
+stats = data %>%
   filter(!is.na(mark)) %>%
   group_by(year, semester, course) %>%
   filter(length(mark) > min_students) %>%
@@ -55,7 +48,7 @@ df %>%
   summarize(shapRejected = mean(pShapiro < 0.05))
 
 ## write the individual csv files as required by the rest of the scripts
-df %>%
+data %>%
   group_by(year, semester, course) %>%
   group_walk(~ write_semester_grade_file(.y$year, .y$semester, .y$course, .x$mark))
 
@@ -63,26 +56,26 @@ df %>%
 
 theme_set(theme_gray(base_size = 25))
 
-ggplot(df, aes(mark)) +
+ggplot(data, aes(mark)) +
   geom_histogram(breaks = seq(0, 100, 5)) +
   labs(title = "COMP marks (1996-2019)")
 
-ggplot(df, aes(mark)) +
+ggplot(data, aes(mark)) +
   geom_histogram(breaks = seq(0, 100, 5)) +
   facet_wrap(~year) +
   labs(title = "COMP marks by year")
 
-ggplot(df %>% filter(!is.na(residency)), aes(mark)) +
+ggplot(data %>% filter(!is.na(residency)), aes(mark)) +
   geom_histogram(breaks = seq(0, 100, 5)) +
   facet_grid(residency~year) +
   labs(title = "COMP marks by year & residency")
 
-ggplot(df, aes(year, mark)) +
+ggplot(data, aes(year, mark)) +
   geom_point(alpha = 0.01) +
   geom_smooth(method = "lm") +
   labs(title = "COMP marks over time")
 
-ggplot(df %>% filter(!is.na(residency)), aes(year, mark)) +
+ggplot(data %>% filter(!is.na(residency)), aes(year, mark)) +
   geom_point(alpha = 0.01) +
   geom_smooth(method = "lm") +
   facet_wrap(~residency, dir="v") +
