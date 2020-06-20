@@ -11,13 +11,10 @@ library("moments")
 
 source("fake_data.R")
 
-## if you want an example of how to munge an Excel spreadsheet (e.g. an
-## automated report from your student mark database) then have a look in
-## anu_preprocessing.R, modify to taste, and then source the file here:
+#####################
+## calculate stats ##
+#####################
 
-## source("anu_preprocessing.R")
-
-## calculate the relevant statistics
 stats = data %>%
   filter(!is.na(mark)) %>%
   group_by(institution, year, semester, course) %>%
