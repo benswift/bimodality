@@ -52,8 +52,8 @@ student's mark**, and has the following columns:
 
 - `institution` (_character_): the name of the institution
 - `year` (_int_): the year the course was taken
-- `semester` (_int_): the semester the course was taken in (to help disambiguate
-  between courses which run multiple times per year)
+- `term` (_int_): the term (semester) the course was taken in (to help
+  disambiguate between courses which run multiple times per year)
 - `course` (_int_ or _character_): the course code (or course name; the only
   requirement is that it's a unique identifier for that particular course)
 - `mark` (_double_): the student's mark
@@ -66,8 +66,8 @@ Here's an example (from the fake data mentioned above)
 ```R
 R> data
 # A tibble: 105,600 x 5
-# Groups:   institution, year, semester, course [3,520]
-   institution          year semester course  mark
+# Groups:   institution, year, term, course [3,520]
+   institution          year     term course  mark
    <chr>               <int>    <int>  <int> <dbl>
  1 Gaussian University  2010        1    100  62.0
  2 Gaussian University  2010        1    100  42.6

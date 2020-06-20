@@ -19,9 +19,9 @@ gen_fake_data <- function(institution_name, mark_fn) {
   tibble(institution = institution_name,
          crossing(
            year = 2010:2019,
-           semester = 1:2,
+           term = 1:2,
            course = c(100:110, 200:210, 300:310, 400:410))) %>%
-    group_by(institution, year, semester, course) %>%
+    group_by(institution, year, term, course) %>%
     mutate(mark = list(mark_fn(students_per_class))) %>%
     unnest(cols = c(mark))
 }

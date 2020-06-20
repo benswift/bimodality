@@ -17,7 +17,7 @@ source("fake_data.R")
 
 stats = data %>%
   filter(!is.na(mark)) %>%
-  group_by(institution, year, semester, course) %>%
+  group_by(institution, year, term, course) %>%
   ## ad.test sample size must be greater than 7
   filter(length(mark) > 7) %>%
   summarize(n = length(mark),
