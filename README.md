@@ -95,9 +95,11 @@ other way.
 
 If you're after an example of how to load & munge an Excel spreadsheet (e.g. an
 automated report from your student mark database) into the right shape, then
-have a look in `ANU_preprocessing.R`, and modify to taste (that file contains
-code that [Ben](https://benswift.me) uses to work with real data from the
-Australian National University).
+have a look in `ANU_preprocessing.R` and modify to taste. That file contains
+code that [Ben](https://benswift.me) uses to work with the spreadsheet that
+comes out of the student mark reporting system at the Australian National
+University, so it probably won't work for you as-is, but might help you get your
+own data into shape.
 
 [^tibble]: well, a [tibble](https://tibble.tidyverse.org/) actually
 
