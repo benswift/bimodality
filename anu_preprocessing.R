@@ -8,6 +8,9 @@ library("moments")
 ## "min class size" threshold
 min_students = 30
 
+## the ANU data dump doesn't explicitly include a "semester" column, so we'll
+## just guess based on census date (this just guesses S1 or S2; doesn't handle
+## summer/winter terms etc.)
 which_semester <- function(dttm){
   ifelse(month(dttm)<=6, 1, 2)
 }
