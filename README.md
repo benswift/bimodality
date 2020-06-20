@@ -70,7 +70,7 @@ Here's an example (from the fake data mentioned above)
 ```R
 R> data
 # A tibble: 105,600 x 5
-# Groups:   institution, year, term, course [2,640]
+# Groups:   institution, year, term, course [3,520]
    institution               year  term course  mark
    <chr>                    <int> <int>  <int> <dbl>
  1 University of Truncation  2010     1    100  95.5
