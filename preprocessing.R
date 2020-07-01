@@ -37,7 +37,16 @@ data = tibble(filename = dir_ls("data/gaussuniversity", regexp = "\\.csv$")) %>%
 ## might help you get your own data into shape.
 
 data = read_excel("data/anu.xlsx") %>%
+  ## rename any columns that don't *exactly* match the expected names in
+  ## bimodality.R (otherwise that script won't work properly)
+  rename(course = `Class Number`,
+         gender = Gender,
+         residency = Residency,
+         program = `Program Description`,
+         grade = `Official Grade`) %>%
   mutate(institution = "ANU",
+         #
+         course = paste("COMP", course, sep=""),
          # extract the year only from the timestamp in the "Census Date" column
          year = year(`Census Date`),
          ## the ANU data dump doesn't explicitly include a "term" column, so we'll
@@ -46,14 +55,15 @@ data = read_excel("data/anu.xlsx") %>%
          term = if_else(month(`Census Date`)<=6, 1, 2),
          ## as.numeric makes sure that any non-numeric grades are converted to NAs
          mark = as.numeric(`Grade Input`)) %>%
-  ## rename any columns that don't *exactly* match the expected names in
-  ## bimodality.R (otherwise that script won't work properly)
-  rename(course = `Class Number`) %>%
   ## select the desired columns for the analysis (since the ANU data spreadsheet
   ## contains many more columns)
   select(institution,
+         program,
+         residency,
+         gender,
          year,
          term,
          course,
-         mark)
+         mark,
+         grade)
 
