@@ -48,7 +48,7 @@ data = read_excel("data/anu.xlsx") %>%
          mark = as.numeric(`Grade Input`)) %>%
   ## rename any columns that don't *exactly* match the expected names in
   ## bimodality.R (otherwise that script won't work properly)
-  rename(course = `Class Number`) %>%
+  rename(course = `Catalogue Number`) %>%
   ## select the desired columns for the analysis (since the ANU data spreadsheet
   ## contains many more columns)
   select(institution,
