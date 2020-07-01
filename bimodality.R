@@ -19,8 +19,8 @@ stats = data %>%
   filter(!is.na(mark)) %>%
   group_by(institution, year, term, course) %>%
   ## ad.test sample size must be greater than 7
-  filter(length(mark) > 7) %>%
-  summarize(n = length(mark),
+  filter(n() > 7) %>%
+  summarize(n = n(),
             mean = mean(mark),
             sd = sd(mark),
             kurtosis = kurtosis(mark),
